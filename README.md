@@ -1,75 +1,72 @@
-# Nova-TIC - Sistema de Agendamento de Consultas
+# TicSaúde - Sistema de Agendamento de Consultas
 
-Sistema de agendamento de consultas com notificações em tempo real.
+Sistema de agendamento de consultas com suporte em Libras e notificações em tempo real.
 
-## Configuração para Deploy
+## 🌐 Acesso ao Sistema
 
-1. **Criar uma conta no GitHub**
-   - Acesse [GitHub](https://github.com) e crie uma conta se ainda não tiver
+O sistema está disponível em: [https://ticsaude.github.io/nova-tic](https://ticsaude.github.io/nova-tic)
 
-2. **Criar um novo repositório no GitHub**
-   - Clique em "New repository"
-   - Dê um nome ao repositório (ex: nova-tic)
-   - Deixe público
-   - Clique em "Create repository"
+## 📱 Funcionalidades
 
-3. **Preparar o projeto para o GitHub**
+- Agendamento de consultas médicas
+- Suporte em Libras com vídeos explicativos
+- Agendamento com intérprete de Libras
+- Notificações em tempo real
+- Seção de emergência
+
+## 🛠️ Tecnologias Utilizadas
+
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap 5
+- Socket.IO
+- Node.js
+- Express
+- MongoDB
+
+## 🚀 Desenvolvimento Local
+
+1. Clone o repositório:
    ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/seu-usuario/nova-tic.git
-   git push -u origin main
+   git clone https://github.com/seu-usuario/nova-tic.git
+   cd nova-tic
    ```
 
-4. **Configurar MongoDB Atlas**
-   - Crie uma conta no [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-   - Crie um novo cluster (pode usar o tier gratuito)
-   - Em "Network Access", adicione `0.0.0.0/0` para permitir acesso de qualquer lugar
-   - Em "Database Access", crie um usuário com permissão de leitura/escrita
-   - Obtenha a string de conexão e substitua no arquivo `.env`
-
-5. **Deploy no Render**
-   - Crie uma conta no [Render](https://render.com)
-   - Clique em "New +" e selecione "Web Service"
-   - Conecte com sua conta do GitHub
-   - Selecione o repositório do Nova-TIC
-   - Configure:
-     - Name: nova-tic (ou outro nome de sua escolha)
-     - Environment: Node
-     - Build Command: `npm install`
-     - Start Command: `node server.js`
-   - Em "Environment Variables", adicione:
-     - `MONGODB_URI`: sua string de conexão do MongoDB Atlas
-     - `PORT`: 5000
-     - `FRONTEND_URL`: URL do seu frontend (se tiver)
-   - Clique em "Create Web Service"
-
-6. **Atualizar URLs no Frontend**
-   - Após o deploy, atualize todas as URLs de API no frontend para apontar para sua nova URL do Render
-   - Atualize a URL do Socket.IO no arquivo notifications.html
-
-## Desenvolvimento Local
-
-1. Instale as dependências:
+2. Instale as dependências:
    ```bash
    npm install
    ```
 
-2. Configure as variáveis de ambiente no arquivo `.env`
+3. Configure as variáveis de ambiente no arquivo `.env`:
+   ```env
+   PORT=5000
+   MONGODB_URI=sua-uri-do-mongodb
+   ```
 
-3. Inicie o servidor:
+4. Inicie o servidor:
    ```bash
    npm start
    ```
 
-4. Acesse `http://localhost:5000` no navegador
+5. Acesse `http://localhost:5000` no navegador
 
-## Tecnologias Utilizadas
+## 📝 Contribuição
 
-- Node.js
-- Express
-- MongoDB
-- Socket.IO
-- HTML/CSS/JavaScript
+1. Faça um Fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👥 Autores
+
+- Seu Nome - Desenvolvedor Principal
+
+## 📞 Suporte
+
+Para suporte, envie um email para seu-email@exemplo.com
