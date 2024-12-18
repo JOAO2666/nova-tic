@@ -65,8 +65,8 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👥 Autores
 
-- Seu Nome - Desenvolvedor Principal
+- JOAO2666 - Desenvolvedor Principal
 
 ## 📞 Suporte
 
-Para suporte, envie um email para seu-email@exemplo.com
+Para suporte, envie um email para joaoemanuel2666@gmail.com
