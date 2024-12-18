@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificações de Consultas</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .notification {
+            background-color: white;
+            border-left: 4px solid #4CAF50;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .notification h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .notification p {
+            margin: 5px 0;
+            color: #666;
+        }
+        #notifications {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Notificações de Consultas</h1>
+    </div>
+    <div id="notifications"></div>
+
+    <script>
+        const socket = io('http://localhost:5000');
+        const notificationsDiv = document.getElementById('notifications');
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function addNotification(data, type) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            
+            const title = type === 'new' ? 'Nova Consulta Agendada' : 'Consulta Atualizada';
+            const html = `
+                <h3>${title}</h3>
+                <p><strong>Paciente:</strong> ${data.appointment.patientName}</p>
+                <p><strong>Data:</strong> ${formatDate(data.appointment.appointmentDate)}</p>
+                <p><strong>Tipo:</strong> ${data.appointment.appointmentType}</p>
+                <p><strong>Especialidade:</strong> ${data.appointment.speciality}</p>
+            `;
+            
+            notification.innerHTML = html;
+            notificationsDiv.insertBefore(notification, notificationsDiv.firstChild);
+        }
+
+        socket.on('connect', () => {
+            console.log('Conectado ao servidor');
+        });
+
+        socket.on('newAppointment', (data) => {
+            addNotification(data, 'new');
+        });
+
+        socket.on('appointmentUpdated', (data) => {
+            addNotification(data, 'update');
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Desconectado do servidor');
+        });
+    </script>
+</body>
+</html>
